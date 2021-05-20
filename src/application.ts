@@ -1,10 +1,6 @@
 import { fromEvent } from "rxjs";
-import { reducer } from "./state/state";
 import * as actions from "./state/actions";
-import { createStore, Action } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension";
-
-const state = createStore(reducer, devToolsEnhancer({ trace: true }));
+import { state } from "./state/state";
 
 export class MyCalculator {
 	private document: Document | undefined;
@@ -39,7 +35,7 @@ export class MyCalculator {
 			state.dispatch(actions.setOperation(op));
 		});
 		fromEvent(this.getElement("calculate"), "click").subscribe(() =>
-			state.dispatch(actions.calculate(0))
+			state.dispatch(actions.calculate(null))
 		);
 
 		// Initialize input elements with values
@@ -61,10 +57,7 @@ export class MyCalculator {
 		state.subscribe(() => {
 			this.viewModel?.updateView();
 		});
-		state.dispatch(actions.setOp1(0));
-		state.dispatch(actions.setOp2(0));
-		state.dispatch(actions.setOperation("+"));
-		state.dispatch(actions.calculate(0));
+		state.dispatch(actions.calculate(null));
 	}
 
 	public getElement(id: string): HTMLElement {
