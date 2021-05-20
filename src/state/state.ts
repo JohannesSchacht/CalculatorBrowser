@@ -1,8 +1,7 @@
-import { createStore, Action } from "redux";
 import * as actions from "./actions";
-import { Operation } from "../application";
 import { produce } from "immer";
-// import { devToolsEnhancer } from "redux-devtools-extension";
+
+type Operation = "+" | "-" | "*" | "/";
 
 type State = {
 	op1: number;
@@ -12,7 +11,7 @@ type State = {
 };
 const defaultState: State = { op1: 0, op2: 0, operation: "+", result: 0 };
 
-function reducer(
+export function reducer(
 	// tslint:disable-next-line: no-shadowed-variable
 	state: State = defaultState,
 	action: { type: string; payload: any }
@@ -55,5 +54,3 @@ function calculate(op1: number, op2: number, operation: Operation): number {
 			return op1 / op2;
 	}
 }
-
-export const state = createStore(reducer); // , devToolsEnhancer({ trace: true }));

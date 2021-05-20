@@ -30,6 +30,7 @@
 	"dependencies": {
 		"immer": "^9.0.2",
 		"redux": "^4.1.0",
+		"redux-devtools-extension": "^2.13.9",
 		"rxjs": "^6.6.7"
 	}
 }

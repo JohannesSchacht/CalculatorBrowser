@@ -1,6 +1,10 @@
 import { fromEvent } from "rxjs";
-import { state } from "./state/state";
+import { reducer } from "./state/state";
 import * as actions from "./state/actions";
+import { createStore, Action } from "redux";
+import { devToolsEnhancer } from "redux-devtools-extension";
+
+const state = createStore(reducer, devToolsEnhancer({ trace: true }));
 
 export class MyCalculator {
 	private document: Document | undefined;
